@@ -1,0 +1,99 @@
+<div class="container my-2">
+  <div class="row">
+    <div class="col">
+      <form #orderForm="ngForm" (ngSubmit)="createTransactionAndPlaceOrder(orderForm)" novalidate>
+        <div class="mb-3 form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            name="fullName"
+            placeholder="Full Name"
+            [(ngModel)]="orderDetails.fullName"
+            required
+          />
+          <label for="fullName">Full Name</label>
+        </div>
+        <div class="mb-3 form-floating">
+          <textarea
+            class="form-control"
+            id="fullAddress"
+            name="fullAddress"
+            placeholder="Full Address"
+            maxlength="200"
+            [(ngModel)]="orderDetails.fullAddress"
+            required
+          ></textarea>
+          <label for="fullAddress">Address</label>
+        </div>
+        <div class="mb-3 form-floating">
+          <input
+            type="number"
+            class="form-control"
+            id="contactNumber"
+            name="contactNumber"
+            placeholder="Contact Number"
+            [(ngModel)]="orderDetails.contactNumber"
+            required
+          />
+          <label for="contactNumber">Contact </label>
+        </div>
+        <div class="mb-3 form-floating">
+          <input
+            type="number"
+            class="form-control"
+            id="altNumber"
+            name="altNumber"
+            placeholder="Alternate Contact Number"
+            [(ngModel)]="orderDetails.altNumber"
+            required
+          />
+          <label for="altNumber">Alternate Contact</label>
+        </div>
+
+        <button type="reset" class="btn btn-secondary">Clear</button>
+        <button type="submit" class="btn btn-primary mx-2">Place Order</button>
+        <!--  <button *ngIf="! isNewProduct" type="submit" class="btn btn-info mx-2">Update Product</button> -->
+      </form>
+    </div>
+    <div class="col">
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <tr *ngFor="let product of productDetails">
+            <td>{{ product.productName }}</td>
+            <td>{{ product.productDiscPrice }}</td>
+            <td>
+              <select
+                class="form-select"
+                #quantity
+                [ngModel]="getQuantityForProduct(product.productId)"
+                (change)="onQuantityChange(quantity.value, product.productId)"
+              >
+                <option value="1">1</option>    
+                <option value="2">2</option>    
+                <option value="3">3</option>    
+            </select>
+            </td>
+            <td>
+                {{getCalculatedTotal(product.productId, product.productDiscPrice)}}
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="fw-bold">Total</td>
+            <td class="fw-bold">{{getCalculatedGrandTotal()}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+
+.btn-remove-image{
+    position: absolute;
+    cursor: pointer;
+    top: 0px;
+    right: 0px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: auto;
+    text-align: center;
+}

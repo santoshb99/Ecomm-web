@@ -1,0 +1,47 @@
+.card-img-top {
+    height: 200px;
+    /* Adjust this value as needed */
+    object-fit: scale-down;
+    padding: 15px;
+    border: 1px solid #eee;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card-text {
+    height: 60px;
+    padding: 5px;
+}
+
+.truncate-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.actual-price {
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+.discounted-price {
+    font-weight: bold;
+}
+
+aside {
+    margin-top: 20px;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  input[type="number"] {
+    text-align: center;
+  }

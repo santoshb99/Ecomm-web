@@ -1,0 +1,25 @@
+/* Global styles or add this to your styles.css */
+html, body {
+    height: 100%;
+    margin: 0;
+    
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ececec;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  app-footer {
+    background-color: #2d3246;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  

@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="table-responsive my-2">
+    
+    <div class="mt-5 d-flex justify-content-center align-items-center" *ngIf="isOrderCheckoutEmpty">
+      <div class="card text-center">
+        <div class="card-body">Cart is Empty</div>
+      </div>
+    </div>
+
+      <table id="cart" class="table table-hover table-condensed" *ngIf="! isOrderCheckoutEmpty">        
+        <thead>
+          <tr>
+            <th style="width: 50%">Product</th>
+            <th style="width: 10%">Price</th>
+            <th style="width: 8%">Quantity</th>
+            <th style="width: 22%" class="text-center">Subtotal</th>
+            <th style="width: 10%"></th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let cart of cartDetails">
+            <td data-th="Product">
+              <div class="row">
+                <div class="col-3 col-sm-2">
+                  <img 
+                    src="http://placehold.it/100x100"
+                    alt="..."
+                    class="img-responsive w-100"
+                  />
+                </div>
+                <div class="col-9 col-sm-10">
+                  <h4 class="nomargin">{{ cart.product.productName }}</h4>
+                  <p>
+                    {{ truncateText(cart.product.productDesc) }}
+                  </p>
+                </div>
+              </div>
+            </td>
+            <td data-th="Price">₹ {{ cart.product.productDiscPrice}}</td>
+            <td data-th="Quantity">
+              <input type="number" class="form-control text-center" value="1" disabled />
+            </td>
+            <td data-th="Subtotal" class="text-center">₹ {{ cart.product.productDiscPrice * 1 }}</td>
+            <td class="actions" data-th="">
+              <!-- <button class="btn btn-info btn-sm" (click)="updateProduct(cart)">
+                <i class="fa fa-refresh"></i>
+              </button> -->
+              <button class="btn btn-danger btn-sm" (click)="deleteProduct(cart.cartId)">
+                <i class="fa fa-trash-o"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot *ngIf="! isOrderCheckoutEmpty">
+          <!-- <tr class="visible-xs">
+            <td class="text-center"><strong>Total ₹ {{ getTotal()}}</strong></td>
+          </tr> -->
+          <tr>
+            <td>
+              <a class="btn btn-warning" routerLink="/"
+                ><i class="fa fa-angle-left"></i> Continue Shopping</a
+              >
+            </td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>Total ₹ {{ getTotal() }}</strong></td>
+            <td>
+              <a class="btn btn-success btn-block" (click)="checkout()">Checkout</a>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  

@@ -1,0 +1,109 @@
+<div class="container my-2">
+  <!-- <div class="input-group my-3 w-50 mx-auto">
+      <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+      <input
+        type="text"
+        class="form-control"
+        #searchkeyword
+        (keyup)="searchByKeyword(searchkeyword.value)"
+        name="searchKey"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Search any product.."
+      />
+    </div> -->
+
+  <div class="d-flex justify-content-end">
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="inlineRadioOptions"
+        id="inlineRadio1"
+        value="All"
+        (click)="getAllOrderDetailsForAdmin('All')"
+      />
+      <label class="form-check-label fw-bold" for="inlineRadio1">All</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="inlineRadioOptions"
+        id="inlineRadio2"
+        value="Placed"
+        (click)="getAllOrderDetailsForAdmin('Placed')"
+      />
+      <label class="form-check-label fw-bold" for="inlineRadio2">Placed</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="inlineRadioOptions"
+        id="inlineRadio3"
+        value="Delivered"
+        (click)="getAllOrderDetailsForAdmin('Delivered')"
+      />
+      <label class="form-check-label fw-bold" for="inlineRadio3">Delivered</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#Id</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Contact No.</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+              <th scope="col" class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of myOrderDetails">
+              <th scope="row">#{{ order.orderId }}</th>
+              <td>{{ order.product.productName }}</td>
+              <td>{{ order.user.userFirstName }}</td>
+              <td>{{ truncateText(order.orderAddress) }}</td>
+              <td>{{ order.orderContactNumber }}</td>
+              <td>{{ order.orderAmount }}</td>
+              <td>{{ order.orderStatus }}</td>
+              <td class="text-center">
+                <button
+                  *ngIf="order.orderStatus == 'Placed'"
+                  type="button"
+                  class="btn btn-primary btn-sm mx-1"
+                  (click)="markAsDelivered(order.orderId)"
+                >
+                  Mark As Delivered
+                </button>
+                <!-- <button 
+                    type="button"
+                    class="btn btn-danger btn-sm m-1"
+                    (click)="deleteProduct(product.productId)"
+                  >
+                    Delete
+                 </button>  -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- <div class="text-center p-5" *ngIf="showLoadButton">
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            (click)="loadMoreProduct()"
+          >
+            Load more
+          </button>
+        </div>  -->
+    </div>
+  </div>
+</div>

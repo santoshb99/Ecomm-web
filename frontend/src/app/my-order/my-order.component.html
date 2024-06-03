@@ -1,0 +1,69 @@
+<div class="container my-2">
+    <!-- <div class="input-group my-3 w-50 mx-auto">
+      <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+      <input
+        type="text"
+        class="form-control"
+        #searchkeyword
+        (keyup)="searchByKeyword(searchkeyword.value)"
+        name="searchKey"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default"
+        placeholder="Search any product.."
+      />
+    </div> -->
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive" >
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Contact No.</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of myOrderDetails">
+                <th scope="row">#{{ order.orderId }}</th>
+                <td>{{ order.orderFullName }}</td>
+                <td>{{ truncateText(order.orderAddress) }}</td>
+                <td>{{ order.orderContactNumber }}</td>
+                <td>{{ order.orderAmount }}</td>
+                <td>{{ order.orderStatus }}</td>
+                <!-- <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm m-1"
+                    (click)="editProduct(product.productId)"
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm m-1"
+                    (click)="deleteProduct(product.productId)"
+                  >
+                    Delete
+                  </button>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-center p-5" *ngIf="showLoadButton">
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            (click)="loadMoreProduct()"
+          >
+            Load more
+          </button>
+        </div> 
+      </div>
+    </div>
+  </div>
+  
